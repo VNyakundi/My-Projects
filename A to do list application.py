@@ -1,67 +1,93 @@
-def display_tasks(tasks):
-    print("\n your to do list: ")
+# To-Do List Application with Enhanced Features
 
-    for index, task in enumerate(tasks, 1):
-        print(f"{index}.{task['task']} - {'done' if task['done']else ['not done']}")
-        print("\n")
+# A list to store tasks
+tasks = []
 
-def add_task(tasks,task):
-    tasks.append({'task':task, 'done':False})
-
-def mark_task_done(tasks,task_number):
-    if 0 < task_number <= len(tasks):
-        tasks[task_number - 1]['done'] = True
-
+def display_tasks():
+    """Display all tasks."""
+    if not tasks:
+        print("\nNo tasks in your to-do list.")
     else:
-        print('invalid task number')
+        print("\nYour To-Do List:")
+        for i, (task, completed) in enumerate(tasks, start=1):
+            status = "✔️" if completed else "❌"
+            print(f"{i}. {task} [{status}]")
 
-def save_tasks_to_file(tasks, filename = 'tasks.txt'):
-    with open (filename,'w') as f:
-        for task in tasks:
-            f.write(f"{task['task']}|{task['done']}\n")
+def add_task():
+    """Add a new task."""
+    task = input("Enter the task: ")
+    tasks.append((task, False))  # False indicates the task is not completed
+    print(f"Task '{task}' added.")
 
-def load_tasks_from_file(filename = 'tasks.txt'):
-    tasks = []
+def mark_task_complete():
+    """Mark a task as complete."""
+    display_tasks()
     try:
-        with open(filename, 'r') as f:
-            for line in f:
-                task,done = line.strip().split('|')
-                tasks.append({'task':task,'done':done=='True'})
+        task_num = int(input("Enter the task number to mark as complete: "))
+        tasks[task_num - 1] = (tasks[task_num - 1][0], True)
+        print(f"Task {task_num} marked as complete.")
+    except (ValueError, IndexError):
+        print("Invalid task number. Please try again.")
 
+def delete_task():
+    """Delete a task."""
+    display_tasks()
+    try:
+        task_num = int(input("Enter the task number to delete: "))
+        deleted_task = tasks.pop(task_num - 1)
+        print(f"Task '{deleted_task[0]}' deleted.")
+    except (ValueError, IndexError):
+        print("Invalid task number. Please try again.")
+
+def save_tasks():
+    """Save tasks to a file."""
+    with open("tasks.txt", "w") as file:
+        for task, completed in tasks:
+            file.write(f"{task}|{completed}\n")
+    print("Tasks saved to 'tasks.txt'.")
+
+def load_tasks():
+    """Load tasks from a file."""
+    try:
+        with open("tasks.txt", "r") as file:
+            for line in file:
+                task, completed = line.strip().split("|")
+                tasks.append((task, completed == "True"))
+        print("Tasks loaded from 'tasks.txt'.")
     except FileNotFoundError:
-        pass # No tasks yet so its okay
-    return tasks
+        print("No saved tasks found.")
 
 def main():
-    tasks = load_tasks_from_file()
-
+    """Main function to run the application."""
+    load_tasks()
     while True:
-        print("\n1.view tasks")
-        print("2.add a task")
-        print("3.mark task as done")
-        print("4.exit")
-
-        choice = input("choose an option: ")
-
-        if choice == '1':
-            display_tasks(tasks)
+        print("\nOptions:")
+        print("1. View Tasks")
+        print("2. Add Task")
+        print("3. Mark Task as Complete")
+        print("4. Delete Task")
+        print("5. Save and Exit")
+        
+        choice = input("Choose an option: ")
+        if choice == "1":
+            display_tasks()
         elif choice == "2":
-            task = input('enter a task: ')
-            add_task(tasks,task)
-            save_tasks_to_file(tasks)
+            add_task()
         elif choice == "3":
-            task_number = int(input("enter task number to mark as done: "))
-            mark_task_done(task,task_number)
-            save_tasks_to_file(tasks)
-        elif choice == '4':
-            print("goodbye")
+            mark_task_complete()
+        elif choice == "4":
+            delete_task()
+        elif choice == "5":
+            save_tasks()
+            print("Goodbye!")
             break
         else:
-            print("invalid option, please try again")
+            print("Invalid choice. Please try again.")
 
-
+# Run the application
 if __name__ == "__main__":
     main()
+
 
 
 
