@@ -1,0 +1,134 @@
+/* General Styles */
+body {
+    font-family: 'Arial', sans-serif;
+    background-color: #000;
+    color: #fff;
+    margin: 0;
+    padding: 0;
+}
+
+header {
+    background-color: #c70000;
+    padding: 10px 20px;
+    text-align: center;
+    color: white;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.3);
+}
+
+header h1 {
+    margin: 0;
+    font-size: 2em;
+}
+
+nav {
+    margin-top: 10px;
+}
+
+nav a {
+    color: white;
+    text-decoration: none;
+    margin: 0 15px;
+    font-weight: bold;
+    padding: 5px 10px;
+    transition: background-color 0.3s, color 0.3s;
+}
+
+nav a:hover {
+    background-color: white;
+    color: #c70000;
+    border-radius: 5px;
+}
+
+main {
+    padding: 20px;
+    text-align: center;
+}
+
+footer {
+    background-color: #111;
+    color: #ccc;
+    padding: 10px;
+    text-align: center;
+    margin-top: 20px;
+}
+
+/* Buttons */
+button {
+    background-color: #c70000;
+    color: white;
+    border: none;
+    padding: 10px 15px;
+    margin: 10px 0;
+    cursor: pointer;
+    font-size: 1em;
+    transition: background-color 0.3s, transform 0.2s;
+}
+
+button:hover {
+    background-color: white;
+    color: #c70000;
+    transform: scale(1.05);
+}
+
+/* Tables */
+table {
+    width: 80%;
+    margin: 20px auto;
+    border-collapse: collapse;
+    color: white;
+    text-align: left;
+}
+
+table th, table td {
+    padding: 10px;
+    border: 1px solid #c70000;
+}
+
+table th {
+    background-color: #c70000;
+}
+
+table tr:hover {
+    background-color: #333;
+}
+
+/* Forms */
+form {
+    max-width: 400px;
+    margin: 20px auto;
+    background-color: #111;
+    padding: 20px;
+    border-radius: 8px;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.5);
+}
+
+form input, form select {
+    width: calc(100% - 20px);
+    padding: 10px;
+    margin: 10px 0;
+    border: 1px solid #c70000;
+    border-radius: 5px;
+    background-color: black;
+    color: white;
+}
+
+form input:focus {
+    border-color: white;
+    outline: none;
+}
+
+form button {
+    width: 100%;
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+    nav a {
+        display: block;
+        margin: 5px 0;
+    }
+
+    table {
+        width: 100%;
+    }
+}

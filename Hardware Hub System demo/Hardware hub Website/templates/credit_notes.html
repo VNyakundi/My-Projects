@@ -1,0 +1,26 @@
+{% extends "base.html" %}
+{% block content %}
+<h2>Credit Notes</h2>
+<table>
+    <thead>
+        <tr>
+            <th>Note ID</th>
+            <th>Customer</th>
+            <th>Amount</th>
+            <th>Reason</th>
+            <th>Date</th>
+        </tr>
+    </thead>
+    <tbody>
+        {% for note in credit_notes %}
+        <tr>
+            <td>{{ note.id }}</td>
+            <td>{{ note.customer }}</td>
+            <td>${{ note.amount }}</td>
+            <td>{{ note.reason }}</td>
+            <td>{{ note.date }}</td>
+        </tr>
+        {% endfor %}
+    </tbody>
+</table>
+{% endblock %}

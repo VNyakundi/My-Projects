@@ -1,0 +1,24 @@
+{% extends "base.html" %}
+{% block content %}
+<h2>Employee Time Logs</h2>
+<table>
+    <thead>
+        <tr>
+            <th>Employee</th>
+            <th>Log In</th>
+            <th>Log Out</th>
+            <th>Total Hours</th>
+        </tr>
+    </thead>
+    <tbody>
+        {% for log in time_logs %}
+        <tr>
+            <td>{{ log.employee }}</td>
+            <td>{{ log.log_in }}</td>
+            <td>{{ log.log_out }}</td>
+            <td>{{ log.total_hours }}</td>
+        </tr>
+        {% endfor %}
+    </tbody>
+</table>
+{% endblock %}

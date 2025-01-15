@@ -1,0 +1,22 @@
+{% extends "base.html" %}
+{% block content %}
+<h2>Reports</h2>
+<table>
+    <thead>
+        <tr>
+            <th>Report ID</th>
+            <th>Type</th>
+            <th>Date</th>
+        </tr>
+    </thead>
+    <tbody>
+        {% for report in reports %}
+        <tr>
+            <td>{{ report.id }}</td>
+            <td>{{ report.type }}</td>
+            <td>{{ report.date }}</td>
+        </tr>
+        {% endfor %}
+    </tbody>
+</table>
+{% endblock %}

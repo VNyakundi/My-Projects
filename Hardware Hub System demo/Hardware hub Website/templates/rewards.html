@@ -1,0 +1,20 @@
+{% extends "base.html" %}
+{% block content %}
+<h2>Customer Rewards</h2>
+<table>
+    <thead>
+        <tr>
+            <th>Customer</th>
+            <th>Points</th>
+        </tr>
+    </thead>
+    <tbody>
+        {% for reward in rewards %}
+        <tr>
+            <td>{{ reward.customer }}</td>
+            <td>{{ reward.points }}</td>
+        </tr>
+        {% endfor %}
+    </tbody>
+</table>
+{% endblock %}

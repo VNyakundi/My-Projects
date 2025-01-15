@@ -1,0 +1,32 @@
+{% extends "base.html" %}
+{% block content %}
+<h2>Estimates</h2>
+<table>
+    <thead>
+        <tr>
+            <th>Estimate ID</th>
+            <th>Customer</th>
+            <th>Item</th>
+            <th>Price</th>
+            <th>Date</th>
+        </tr>
+    </thead>
+    <tbody>
+        {% for estimate in estimates %}
+        <tr>
+            <td>{{ estimate.id }}</td>
+            <td>{{ estimate.customer }}</td>
+            <td>{{ estimate.item }}</td>
+            <td>${{ estimate.price }}</td>
+            <td>{{ estimate.date }}</td>
+        </tr>
+        {% endfor %}
+    </tbody>
+</table>
+<form method="POST" action="/estimates">
+    <input type="text" name="customer" placeholder="Customer Name" required>
+    <input type="text" name="item" placeholder="Item" required>
+    <input type="number" name="price" placeholder="Price" required>
+    <button type="submit">Create Estimate</button>
+</form>
+{% endblock %}
