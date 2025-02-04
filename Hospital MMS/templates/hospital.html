@@ -1,0 +1,149 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Hospital Management System</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/styles.css') }}">
+    <script>
+        async function addPatient() {
+            const patientData = {
+                patient_id: document.getElementById("patient_id").value,
+                name: document.getElementById("patient_name").value,
+                age: document.getElementById("patient_age").value,
+                disease: document.getElementById("patient_disease").value
+            };
+
+            const response = await fetch('/add_patient', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json'
+                },
+                body: JSON.stringify(patientData)
+            });
+
+            const result = await response.json();
+            showAlert(result.message, 'success');
+        }
+
+        async function getPatient() {
+            const patientId = document.getElementById("get_patient_id").value;
+            const response = await fetch(`/get_patient/${patientId}`);
+            const result = await response.json();
+            if (result.message) {
+                showAlert(result.message, 'error');
+            } else {
+                showAlert(`Patient Details: ${JSON.stringify(result)}`, 'success');
+            }
+        }
+
+        async function addDoctor() {
+            const doctorData = {
+                doctor_id: document.getElementById("doctor_id").value,
+                name: document.getElementById("doctor_name").value,
+                specialization: document.getElementById("doctor_specialization").value
+            };
+
+            const response = await fetch('/add_doctor', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json'
+                },
+                body: JSON.stringify(doctorData)
+            });
+
+            const result = await response.json();
+            showAlert(result.message, 'success');
+        }
+
+        async function getDoctor() {
+            const doctorId = document.getElementById("get_doctor_id").value;
+            const response = await fetch(`/get_doctor/${doctorId}`);
+            const result = await response.json();
+            if (result.message) {
+                showAlert(result.message, 'error');
+            } else {
+                showAlert(`Doctor Details: ${JSON.stringify(result)}`, 'success');
+            }
+        }
+
+        async function getTotalRevenue() {
+            const response = await fetch('/total_revenue');
+            const result = await response.json();
+            showAlert(`Total Revenue: ${result.total_revenue}`, 'success');
+        }
+
+        function showAlert(message, type) {
+            const alertBox = document.createElement('div');
+            alertBox.classList.add('alert');
+            if (type === 'error') {
+                alertBox.classList.add('error');
+            } else if (type === 'success') {
+                alertBox.classList.add('success');
+            }
+            alertBox.textContent = message;
+            document.body.appendChild(alertBox);
+            setTimeout(() => {
+                alertBox.remove();
+            }, 3000);
+        }
+    </script>
+</head>
+<body>
+    <div class="container">
+        <h1>Hospital Management System</h1>
+        
+        <div class="section">
+            <h2>Add Patient</h2>
+            <div class="input-group">
+                <label>Patient ID: </label><input type="text" id="patient_id" />
+            </div>
+            <div class="input-group">
+                <label>Name: </label><input type="text" id="patient_name" />
+            </div>
+            <div class="input-group">
+                <label>Age: </label><input type="text" id="patient_age" />
+            </div>
+            <div class="input-group">
+                <label>Disease: </label><input type="text" id="patient_disease" />
+            </div>
+            <button onclick="addPatient()">Add Patient</button>
+        </div>
+
+        <div class="section">
+            <h2>Get Patient</h2>
+            <div class="input-group">
+                <label>Patient ID: </label><input type="text" id="get_patient_id" />
+            </div>
+            <button onclick="getPatient()">Get Patient</button>
+        </div>
+
+        <div class="section">
+            <h2>Add Doctor</h2>
+            <div class="input-group">
+                <label>Doctor ID: </label><input type="text" id="doctor_id" />
+            </div>
+            <div class="input-group">
+                <label>Name: </label><input type="text" id="doctor_name" />
+            </div>
+            <div class="input-group">
+                <label>Specialization: </label><input type="text" id="doctor_specialization" />
+            </div>
+            <button onclick="addDoctor()">Add Doctor</button>
+        </div>
+
+        <div class="section">
+            <h2>Get Doctor</h2>
+            <div class="input-group">
+                <label>Doctor ID: </label><input type="text" id="get_doctor_id" />
+            </div>
+            <button onclick="getDoctor()">Get Doctor</button>
+        </div>
+
+        <div class="section">
+            <h2>Total Revenue</h2>
+            <button onclick="getTotalRevenue()">Get Total Revenue</button>
+        </div>
+    </div>
+</body>
+</html>
