@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Premier League Standings</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            text-align: center;
+            margin: 20px;
+        }
+        table {
+            width: 80%;
+            margin: auto;
+            border-collapse: collapse;
+        }
+        th, td {
+            padding: 10px;
+            border: 1px solid black;
+        }
+        th {
+            background-color: #333;
+            color: white;
+        }
+        img {
+            height: 30px;
+        }
+    </style>
+</head>
+<body>
+    <h1>Premier League Standings - 2024</h1>
+    <table>
+        <tr>
+            <th>Rank</th>
+            <th>Team</th>
+            <th>Played</th>
+            <th>Wins</th>
+            <th>Draws</th>
+            <th>Losses</th>
+            <th>Goal Difference</th>
+            <th>Points</th>
+        </tr>
+        {% for team in teams %}
+        <tr>
+            <td>{{ team.rank }}</td>
+            <td><img src="{{ team.logo }}" alt="{{ team.name }} Logo"> {{ team.name }}</td>
+            <td>{{ team.played }}</td>
+            <td>{{ team.wins }}</td>
+            <td>{{ team.draws }}</td>
+            <td>{{ team.losses }}</td>
+            <td>{{ team.goal_diff }}</td>
+            <td><strong>{{ team.points }}</strong></td>
+        </tr>
+        {% endfor %}
+    </table>
+</body>
+</html>
