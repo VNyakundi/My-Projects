@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Banking System</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+</head>
+<body>
+    <div class="container">
+        <header>
+            <h1>Banking System</h1>
+            <div class="balance-container">
+                <h2>Current Balance</h2>
+                <p id="balance">$0.00</p>
+            </div>
+        </header>
+
+        <main>
+            <div class="transaction-section">
+                <div class="input-group">
+                    <input type="number" id="amount" placeholder="Enter amount" step="0.01" min="0">
+                    <div class="button-group">
+                        <button id="depositBtn" class="btn deposit">Deposit</button>
+                        <button id="withdrawBtn" class="btn withdraw">Withdraw</button>
+                    </div>
+                </div>
+            </div>
+
+            <div class="history-section">
+                <h2>Transaction History</h2>
+                <div id="transactionHistory" class="transaction-list"></div>
+            </div>
+        </main>
+    </div>
+    <script src="{{ url_for('static', filename='script.js') }}"></script>
+</body>
+</html> 

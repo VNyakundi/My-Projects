@@ -1,0 +1,157 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}
+
+body {
+    background-color: #f0f8ff;
+    min-height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.container {
+    background-color: white;
+    border-radius: 15px;
+    box-shadow: 0 0 20px rgba(0, 0, 0, 0.1);
+    padding: 2rem;
+    width: 90%;
+    max-width: 600px;
+}
+
+header {
+    text-align: center;
+    margin-bottom: 2rem;
+}
+
+h1 {
+    color: #1e90ff;
+    margin-bottom: 1rem;
+}
+
+.balance-container {
+    background-color: #e6f3ff;
+    padding: 1rem;
+    border-radius: 10px;
+    margin-bottom: 2rem;
+}
+
+.balance-container h2 {
+    color: #4169e1;
+    font-size: 1.2rem;
+    margin-bottom: 0.5rem;
+}
+
+#balance {
+    font-size: 2rem;
+    color: #1e90ff;
+    font-weight: bold;
+}
+
+.transaction-section {
+    margin-bottom: 2rem;
+}
+
+.input-group {
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+}
+
+input[type="number"] {
+    padding: 0.8rem;
+    border: 2px solid #e6f3ff;
+    border-radius: 8px;
+    font-size: 1rem;
+    outline: none;
+    transition: border-color 0.3s ease;
+}
+
+input[type="number"]:focus {
+    border-color: #1e90ff;
+}
+
+.button-group {
+    display: flex;
+    gap: 1rem;
+}
+
+.btn {
+    flex: 1;
+    padding: 0.8rem;
+    border: none;
+    border-radius: 8px;
+    font-size: 1rem;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    font-weight: bold;
+}
+
+.btn.deposit {
+    background-color: #1e90ff;
+    color: white;
+}
+
+.btn.withdraw {
+    background-color: #ff6b6b;
+    color: white;
+}
+
+.btn:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+}
+
+.btn:active {
+    transform: translateY(0);
+}
+
+.history-section {
+    background-color: #f8f9fa;
+    padding: 1rem;
+    border-radius: 10px;
+}
+
+.history-section h2 {
+    color: #4169e1;
+    margin-bottom: 1rem;
+}
+
+.transaction-list {
+    max-height: 300px;
+    overflow-y: auto;
+}
+
+.transaction-item {
+    padding: 0.8rem;
+    border-bottom: 1px solid #e6f3ff;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.transaction-item:last-child {
+    border-bottom: none;
+}
+
+.transaction-item.deposit {
+    color: #1e90ff;
+}
+
+.transaction-item.withdrawal {
+    color: #ff6b6b;
+}
+
+/* Animation for balance updates */
+@keyframes balanceUpdate {
+    0% { transform: scale(1); }
+    50% { transform: scale(1.1); }
+    100% { transform: scale(1); }
+}
+
+.balance-update {
+    animation: balanceUpdate 0.5s ease;
+} 
