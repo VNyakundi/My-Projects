@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Brook Bank</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+</head>
+<body>
+    <div class="container">
+        <header>
+            <h1>Welcome to Brook Bank Vincent Nyakundi</h1>
+            <div class="balance-container">
+                <h2>Current Balance</h2>
+                <p id="balance">$1000.00</p>
+            </div>
+        </header>
+
+        <main>
+            <div id="pinSection" class="pin-section">
+                <h2>Enter PIN</h2>
+                <div class="input-group">
+                    <input type="password" id="pin" placeholder="Enter your PIN" maxlength="4" pattern="[0-9]*">
+                </div>
+            </div>
+
+            <div id="transactionSection" class="transaction-section" style="display: none;">
+                <div class="input-group">
+                    <input type="number" id="amount" placeholder="Enter amount" step="0.01" min="0">
+                    <div class="button-group">
+                        <button id="depositBtn" class="btn deposit">Deposit</button>
+                        <button id="withdrawBtn" class="btn withdraw">Withdraw</button>
+                    </div>
+                </div>
+            </div>
+
+            <div class="history-section">
+                <h2>Transaction History</h2>
+                <div id="transactionHistory" class="transaction-list"></div>
+            </div>
+        </main>
+    </div>
+
+    <!-- Receipt Modal -->
+    <div id="receiptModal" class="modal">
+        <div class="modal-content">
+            <span class="close">&times;</span>
+            <h2>Transaction Receipt</h2>
+            <pre id="receiptContent"></pre>
+            <button id="printReceiptBtn" class="btn print">Print Receipt</button>
+        </div>
+    </div>
+
+    <script src="{{ url_for('static', filename='script.js') }}"></script>
+</body>
+</html> 

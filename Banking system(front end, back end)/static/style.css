@@ -1,0 +1,246 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}
+
+body {
+    background-color: #f0f8ff;
+    min-height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.container {
+    background-color: white;
+    border-radius: 15px;
+    box-shadow: 0 0 20px rgba(0, 0, 0, 0.1);
+    padding: 2rem;
+    width: 90%;
+    max-width: 600px;
+}
+
+header {
+    text-align: center;
+    margin-bottom: 2rem;
+}
+
+h1 {
+    color: #1e90ff;
+    margin-bottom: 1rem;
+}
+
+.balance-container {
+    background-color: #e6f3ff;
+    padding: 1rem;
+    border-radius: 10px;
+    margin-bottom: 2rem;
+}
+
+.balance-container h2 {
+    color: #4169e1;
+    font-size: 1.2rem;
+    margin-bottom: 0.5rem;
+}
+
+#balance {
+    font-size: 2rem;
+    color: #1e90ff;
+    font-weight: bold;
+}
+
+.pin-section {
+    margin-bottom: 2rem;
+    text-align: center;
+}
+
+.pin-section h2 {
+    color: #4169e1;
+    margin-bottom: 1rem;
+}
+
+.transaction-section {
+    margin-bottom: 2rem;
+}
+
+.input-group {
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+}
+
+input[type="number"],
+input[type="password"] {
+    padding: 0.8rem;
+    border: 2px solid #e6f3ff;
+    border-radius: 8px;
+    font-size: 1rem;
+    outline: none;
+    transition: border-color 0.3s ease;
+}
+
+input[type="number"]:focus,
+input[type="password"]:focus {
+    border-color: #1e90ff;
+}
+
+.button-group {
+    display: flex;
+    gap: 1rem;
+}
+
+.btn {
+    flex: 1;
+    padding: 0.8rem;
+    border: none;
+    border-radius: 8px;
+    font-size: 1rem;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    font-weight: bold;
+}
+
+.btn.deposit {
+    background-color: #1e90ff;
+    color: white;
+}
+
+.btn.withdraw {
+    background-color: #ff6b6b;
+    color: white;
+}
+
+.btn.verify {
+    background-color: #4169e1;
+    color: white;
+}
+
+.btn.print {
+    background-color: #2ecc71;
+    color: white;
+    margin-top: 1rem;
+}
+
+.btn:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+}
+
+.btn:active {
+    transform: translateY(0);
+}
+
+.history-section {
+    background-color: #f8f9fa;
+    padding: 1rem;
+    border-radius: 10px;
+}
+
+.history-section h2 {
+    color: #4169e1;
+    margin-bottom: 1rem;
+}
+
+.transaction-list {
+    max-height: 300px;
+    overflow-y: auto;
+}
+
+.transaction-item {
+    padding: 0.8rem;
+    border-bottom: 1px solid #e6f3ff;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
+
+.transaction-item:hover {
+    background-color: #e6f3ff;
+}
+
+.transaction-item:last-child {
+    border-bottom: none;
+}
+
+.transaction-item.deposit {
+    color: #1e90ff;
+}
+
+.transaction-item.withdrawal {
+    color: #ff6b6b;
+}
+
+/* Modal styles */
+.modal {
+    display: none;
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.5);
+    z-index: 1000;
+}
+
+.modal-content {
+    background-color: white;
+    margin: 15% auto;
+    padding: 2rem;
+    border-radius: 15px;
+    width: 90%;
+    max-width: 500px;
+    position: relative;
+}
+
+.close {
+    position: absolute;
+    right: 1rem;
+    top: 1rem;
+    font-size: 1.5rem;
+    cursor: pointer;
+    color: #666;
+}
+
+.close:hover {
+    color: #000;
+}
+
+#receiptContent {
+    margin: 1rem 0;
+    padding: 1rem;
+    background-color: #f8f9fa;
+    border-radius: 8px;
+    white-space: pre-wrap;
+    font-family: monospace;
+}
+
+/* Animation for balance updates */
+@keyframes balanceUpdate {
+    0% { transform: scale(1); }
+    50% { transform: scale(1.1); }
+    100% { transform: scale(1); }
+}
+
+.balance-update {
+    animation: balanceUpdate 0.5s ease;
+}
+
+/* Print styles */
+@media print {
+    body * {
+        visibility: hidden;
+    }
+    #receiptContent, #receiptContent * {
+        visibility: visible;
+    }
+    #receiptContent {
+        position: absolute;
+        left: 0;
+        top: 0;
+        width: 100%;
+    }
+} 
